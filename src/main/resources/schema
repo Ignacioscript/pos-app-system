@@ -1,0 +1,52 @@
+CREATE TABLE Customer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
+    email VARCHAR(255),
+    phoneNumber VARCHAR(255)
+);
+
+INSERT INTO Customer (firstName, lastName, email, phoneNumber) VALUES
+('Emma', 'Brown', 'emma.brown@example.com', '555-123-4567'),
+('Liam', 'Smith', 'liam.smith@example.com', '555-987-6543'),
+('Olivia', 'Jones', 'olivia.jones@example.com', '555-246-8013'),
+('Noah', 'Williams', 'noah.williams@example.com', '555-789-0123'),
+('Ava', 'Davis', 'ava.davis@example.com', '555-369-1245'),
+('Sophia', 'Garcia', 'sophia.garcia@example.com', '555-876-5432'),
+('Jackson', 'Rodriguez', 'jackson.rodriguez@example.com', '555-135-7924'),
+('Isabella', 'Wilson', 'isabella.wilson@example.com', '555-642-0813'),
+('Aiden', 'Martinez', 'aiden.martinez@example.com', '555-901-2345'),
+('Mia', 'Anderson', 'mia.anderson@example.com', '555-456-7890'),
+('Lucas', 'Taylor', 'lucas.taylor@example.com', '555-321-6549'),
+('Harper', 'Thomas', 'harper.thomas@example.com', '555-876-5432'),
+('Ethan', 'Moore', 'ethan.moore@example.com', '555-102-9384'),
+('Evelyn', 'Jackson', 'evelyn.jackson@example.com', '555-753-9182'),
+('Alexander', 'Martin', 'alexander.martin@example.com', '555-284-6031'),
+('Abigail', 'Lee', 'abigail.lee@example.com', '555-964-1378'),
+('Daniel', 'Perez', 'daniel.perez@example.com', '555-378-9214'),
+('Emily', 'Thompson', 'emily.thompson@example.com', '555-816-2409'),
+('Matthew', 'White', 'matthew.white@example.com', '555-402-8671'),
+('Ella', 'Harris', 'ella.harris@example.com', '555-953-0728');
+
+
+CREATE TABLE Employee (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
+    email VARCHAR(255),
+    jobTitle VARCHAR(255),
+    location VARCHAR(255),
+    hireDate DATE
+);
+
+INSERT INTO Employee (firstName, lastName, email, jobTitle, location, hireDate) VALUES
+('Liam', 'Smith', 'liam.smith@example.com', 'Software Engineer', 'New York', '2022-08-15'),
+('Olivia', 'Jones', 'olivia.jones@example.com', 'Data Analyst', 'London', '2023-01-20'),
+('Noah', 'Williams', 'noah.williams@example.com', 'Project Manager', 'Tokyo', '2022-05-10'),
+('Emma', 'Brown', 'emma.brown@example.com', 'UX Designer', 'San Francisco', '2023-09-03'),
+('Ava', 'Davis', 'ava.davis@example.com', 'Marketing Specialist', 'Berlin', '2022-11-12'),
+('Sophia', 'Garcia', 'sophia.garcia@example.com', 'Sales Representative', 'Paris', '2023-06-28'),
+('Jackson', 'Rodriguez', 'jackson.rodriguez@example.com', 'Financial Analyst', 'Sydney', '2022-03-05'),
+('Isabella', 'Wilson', 'isabella.wilson@example.com', 'Customer Service Rep', 'Toronto', '2023-10-18'),
+('Aiden', 'Martinez', 'aiden.martinez@example.com', 'Operations Manager', 'Dubai', '2022-07-22'),
+('Mia', 'Anderson', 'mia.anderson@example.com', 'Human Resources Gen', 'Singapore', '2023-04-11');
