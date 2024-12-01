@@ -73,12 +73,7 @@ public class CustomerDAO extends DataAccessObject<Customer>{
             PreparedStatement statement = connection.prepareStatement(FIND_ALL)){
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
-                customer = new Customer(rs.getInt("id"),
-                        rs.getString("firstname"),
-                        rs.getString("lastname"),
-                        rs.getString("email"),
-                        rs.getString("phoneNumber"));
-                customers.add(customer);
+                customers.add(mapResultSetToCustomer(rs));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -95,16 +90,21 @@ public class CustomerDAO extends DataAccessObject<Customer>{
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             rs.absolute(1);
-                customer = new Customer(rs.getInt("id"),
-                        rs.getString("firstname"),
-                        rs.getString("lastname"),
-                        rs.getString("email"),
-                        rs.getString("phoneNumber"));
+                return mapResultSetToCustomer(rs);
 
         }catch (SQLException e){
             e.printStackTrace();
             throw new RuntimeException();
         }
-        return customer;
+
+    }
+
+    private Customer mapResultSetToCustomer(ResultSet rs) throws SQLException {
+        return new Customer(
+                rs.getInt("id"),
+                rs.getString("firstname"),
+                rs.getString("lastname"),
+                rs.getString("email"),
+                rs.getString("phoneNumber"));
     }
 }

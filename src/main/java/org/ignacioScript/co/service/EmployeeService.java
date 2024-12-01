@@ -38,8 +38,8 @@ public class EmployeeService {
                                 employee.getLastName(),
                                 employee.getEmail(),
                                 employee.getPhoneNumber(),
-                                employee.getJobTitle(),
-                                employee.getLocation())
+                                employee.getJobTitle().getJobTitle(),
+                                employee.getLocation().getCity())
                         ).collect(Collectors.toList());
     }
 
@@ -50,7 +50,7 @@ public class EmployeeService {
                 employee.getLastName(),
                 employee.getEmail(),
                 employee.getPhoneNumber(),
-                employee.getJobTitle(),
-                employee.getLocation());
+                employee.getJobTitle().getJobTitle(),
+                employee.getLocation().getCity());
     }
 }

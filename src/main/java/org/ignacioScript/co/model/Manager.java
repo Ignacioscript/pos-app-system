@@ -1,33 +1,15 @@
 package org.ignacioScript.co.model;
 
 
-import java.time.LocalDate;
-
-public class Employee extends User {
+public class Manager extends User{
 
 
-
-    private Job jobTitle;
     private Location location;
-    private LocalDate hireDate;
 
+    public Manager(int id, String firstName, String lastName, String email, String phoneNumber, Location location) {
 
-
-    public Employee(int id, String firstName, String lastName, String email, String phoneNumber, Job jobTitle, Location location, LocalDate hireDate) {
         super(id, firstName, lastName, email, phoneNumber);
-        this.jobTitle = jobTitle;
         this.location = location;
-        this.hireDate = hireDate;
-    }
-
-
-
-    public Job getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(Job jobTitle) {
-        this.jobTitle = jobTitle;
     }
 
     public Location getLocation() {
@@ -36,14 +18,7 @@ public class Employee extends User {
 
     public void setLocation(Location location) {
         this.location = location;
-    }
 
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
     }
 
     @Override
@@ -70,4 +45,5 @@ public class Employee extends User {
     public int getId() {
         return super.id;
     }
+
 }
