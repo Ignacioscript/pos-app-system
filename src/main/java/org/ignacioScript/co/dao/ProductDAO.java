@@ -90,6 +90,7 @@ public class ProductDAO extends DataAccessObject<Product>{
         }catch (SQLException e){
             e.printStackTrace();
             throw new RuntimeException(e);
+
         }
 
 
