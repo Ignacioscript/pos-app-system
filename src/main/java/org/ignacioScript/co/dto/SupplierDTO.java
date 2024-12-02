@@ -4,23 +4,19 @@ import org.ignacioScript.co.model.Location;
 
 public class SupplierDTO {
 
-    private int supplierId;
+
     private String supplierName;
     private String location;
 
-    public SupplierDTO(int supplierId, String supplierName, String location) {
-        this.supplierId = supplierId;
+    public SupplierDTO(String supplierName, String location) {
+
         this.supplierName = supplierName;
         this.location = location;
     }
 
-    public int getSupplierId() {
-        return supplierId;
-    }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
-    }
+
+
 
     public String getSupplierName() {
         return supplierName;

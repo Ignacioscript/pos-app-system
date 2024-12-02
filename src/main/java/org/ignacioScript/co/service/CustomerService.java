@@ -1,6 +1,5 @@
 package org.ignacioScript.co.service;
 
-import org.checkerframework.checker.units.qual.C;
 import org.ignacioScript.co.dao.CustomerDAO;
 import org.ignacioScript.co.dto.CustomerDTO;
 import org.ignacioScript.co.model.Customer;
