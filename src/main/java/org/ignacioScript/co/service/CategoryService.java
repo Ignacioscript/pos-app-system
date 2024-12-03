@@ -15,11 +15,20 @@ public class CategoryService {
         categoryDAO = new CategoryDAO();
     }
 
-    public void save(Category category){
+    public void save(CategoryDTO categoryDTO){
+        Category category = new Category(
+                categoryDTO.getName(),
+                categoryDTO.getDescription()
+        );
+
         categoryDAO.save(category);
     }
 
-    public void update(Category category, int id){
+    public void update(CategoryDTO categoryDTO, int id){
+        Category category = new Category(
+                categoryDTO.getName(),
+                categoryDTO.getDescription()
+        );
         categoryDAO.update(category, id);
     }
 

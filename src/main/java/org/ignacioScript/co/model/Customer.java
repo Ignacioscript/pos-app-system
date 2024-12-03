@@ -10,6 +10,11 @@ public class Customer extends User {
 
     }
 
+    public Customer(String firstName, String lastName, String email, String phoneNumber){
+        super(firstName, lastName, email, phoneNumber);
+
+    }
+
     public String getPhoneNumber() {
         return super.phoneNumber;
     }

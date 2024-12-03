@@ -1,6 +1,5 @@
 package org.ignacioScript.co;
 
-import org.ignacioScript.co.controller.CustomerController;
 import org.ignacioScript.co.dto.CustomerDTO;
 
 

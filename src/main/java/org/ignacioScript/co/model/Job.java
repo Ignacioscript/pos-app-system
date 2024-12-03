@@ -14,6 +14,11 @@ public class Job implements DataTransferObject {
         this.salary = salary;
     }
 
+    public Job(String jobTitle, double salary) {
+        this.jobTitle = jobTitle;
+        this.salary = salary;
+    }
+
     public int getJobId() {
         return jobId;
     }

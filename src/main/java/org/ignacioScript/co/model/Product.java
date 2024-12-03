@@ -22,6 +22,14 @@ public class Product implements DataTransferObject {
         this.category = category;
     }
 
+    public Product(String name, String description, int quantityStock, double price, Category category) {
+        this.name = name;
+        this.description = description;
+        this.quantityStock = quantityStock;
+        this.price = price;
+        this.category = category;
+    }
+
     public int getProductId() {
         return productId;
     }

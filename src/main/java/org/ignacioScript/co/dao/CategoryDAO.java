@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDAO extends DataAccessObject<Category>{
+public class CategoryDAO extends  DataAccessObject<Category>{
 
 
     @Override
@@ -91,7 +91,7 @@ public class CategoryDAO extends DataAccessObject<Category>{
             ResultSet resultSet = statement.executeQuery();
             resultSet.absolute(1);
             category = new Category(
-                    resultSet.getInt("categoryId"),
+                   resultSet.getInt("categoryId"),
                     resultSet.getString("name"),
                     resultSet.getString("description")
             );

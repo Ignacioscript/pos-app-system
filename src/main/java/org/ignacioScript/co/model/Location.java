@@ -1,6 +1,5 @@
 package org.ignacioScript.co.model;
 
-import org.ignacioScript.co.dao.DataAccessObject;
 import org.ignacioScript.co.interfaces.DataTransferObject;
 
 public class Location implements DataTransferObject {
@@ -12,6 +11,12 @@ public class Location implements DataTransferObject {
 
     public Location(int locationId, String province, String city, String street) {
         this.locationId = locationId;
+        this.province = province;
+        this.city = city;
+        this.street = street;
+    }
+
+    public Location(String province, String city, String street) {
         this.province = province;
         this.city = city;
         this.street = street;

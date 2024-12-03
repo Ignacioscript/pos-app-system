@@ -20,6 +20,13 @@ public class Employee extends User {
         this.hireDate = hireDate;
     }
 
+    public Employee(String firstName, String lastName, String email, String phoneNumber, Job jobTitle, Location location, LocalDate hireDate) {
+        super(firstName, lastName, email, phoneNumber);
+        this.jobTitle = jobTitle;
+        this.location = location;
+        this.hireDate = hireDate;
+    }
+
 
 
     public Job getJobTitle() {

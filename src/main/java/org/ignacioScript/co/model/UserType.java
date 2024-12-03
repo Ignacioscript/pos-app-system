@@ -12,6 +12,10 @@ public class UserType implements DataTransferObject {
         this.userType = userType;
     }
 
+    public UserType(String userType) {
+        this.userType = userType;
+    }
+
     public int getUserTypeId() {
         return userTypeId;
     }

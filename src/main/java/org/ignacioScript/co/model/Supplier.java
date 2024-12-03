@@ -14,6 +14,11 @@ public class Supplier implements DataTransferObject {
         this.location = location;
     }
 
+    public Supplier(String supplierName, Location location) {
+        this.supplierName = supplierName;
+        this.location = location;
+    }
+
     public int getSupplierId() {
         return supplierId;
     }

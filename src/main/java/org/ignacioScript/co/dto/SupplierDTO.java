@@ -1,6 +1,6 @@
 package org.ignacioScript.co.dto;
 
-import org.ignacioScript.co.model.Location;
+
 
 public class SupplierDTO {
 

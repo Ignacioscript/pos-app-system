@@ -1,6 +1,5 @@
 package org.ignacioScript.co.dao;
 
-import org.ignacioScript.co.model.Category;
 import org.ignacioScript.co.model.Product;
 import org.ignacioScript.co.utils.DBUtils;
 

@@ -8,11 +8,18 @@ public class Category implements DataTransferObject {
     private String categoryName;
     private String description;
 
+    public Category(String categoryName, String description) {
+        this.categoryName = categoryName;
+        this.description = description;
+    }
+
     public Category(int categoryId, String categoryName, String description) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.description = description;
     }
+
+
 
     public int getCategoryId() {
         return categoryId;

@@ -12,6 +12,12 @@ public class Manager extends User{
         this.location = location;
     }
 
+    public Manager(String firstName, String lastName, String email, String phoneNumber, Location location) {
+
+        super(firstName, lastName, email, phoneNumber);
+        this.location = location;
+    }
+
     public Location getLocation() {
         return location;
     }

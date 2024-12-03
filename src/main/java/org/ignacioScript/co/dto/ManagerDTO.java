@@ -5,9 +5,9 @@ public class ManagerDTO {
     private String managerName;
     private String managerEmail;
     private String managerPhone;
-    private String location;
+    private LocationDTO location;
 
-    public ManagerDTO(String managerName, String managerEmail, String managerPhone, String location) {
+    public ManagerDTO(String managerName, String managerEmail, String managerPhone, LocationDTO location) {
         this.managerName = managerName;
         this.managerEmail = managerEmail;
         this.managerPhone = managerPhone;
@@ -39,11 +39,11 @@ public class ManagerDTO {
         this.managerPhone = managerPhone;
     }
 
-    public String getLocation() {
+    public LocationDTO getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(LocationDTO location) {
         this.location = location;
     }
 

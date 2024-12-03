@@ -47,6 +47,13 @@ public abstract class User implements DataTransferObject {
 
     }
 
+    public User(String firstName, String lastName, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     protected String getFirstName() {
         return firstName;
     }
