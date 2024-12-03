@@ -3,11 +3,12 @@ package org.ignacioScript.co.dto;
 public class ManagerDTO {
 
     private String managerName;
+    private String managerLastName;
     private String managerEmail;
     private String managerPhone;
     private LocationDTO location;
 
-    public ManagerDTO(String managerName, String managerEmail, String managerPhone, LocationDTO location) {
+    public ManagerDTO(String managerName, String managerLastName, String managerEmail, String managerPhone, LocationDTO location) {
         this.managerName = managerName;
         this.managerEmail = managerEmail;
         this.managerPhone = managerPhone;
@@ -20,6 +21,14 @@ public class ManagerDTO {
     }
 
     public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
+
+    public String getManagerLastName() {
+        return managerName;
+    }
+
+    public void setManagerLastName(String managerName) {
         this.managerName = managerName;
     }
 

@@ -1,5 +1,6 @@
 package org.ignacioScript.co.service;
 
+import org.ignacioScript.co.dao.LocationDAO;
 import org.ignacioScript.co.dao.ManagerDAO;
 import org.ignacioScript.co.dto.LocationDTO;
 import org.ignacioScript.co.dto.ManagerDTO;
@@ -14,39 +15,46 @@ public class ManagerService {
     private final ManagerDAO managerDAO;
 
     public ManagerService(ManagerDAO managerDAO) {
-        this.managerDAO = new ManagerDAO();
+        this.managerDAO = managerDAO;
     }
 
 
-    public void saveManager(Manager manager) {
-        managerDAO.save(manager);
-    }
 
-    public void saveManagerDTO(ManagerDTO managerDTO){
 
-        LocationDTO locationDTO = managerDTO.getLocation();
-
+    public void saveManagerDTO(ManagerDTO managerDTO, LocationDTO locationDTO) {
         Location location = new Location(
-                0,
                 locationDTO.getProvince(),
                 locationDTO.getCity(),
-                locationDTO.getStreet());
-
-
-        String[] name = managerDTO.getManagerName().split(" ");
+                locationDTO.getStreet()
+        );
         Manager manager = new Manager(
-                0,
-                name[0],
-                name[1],
+                managerDTO.getManagerName(),
+                managerDTO.getManagerLastName(),
                 managerDTO.getManagerEmail(),
                 managerDTO.getManagerPhone(),
-                location);
+                location
+        );
         managerDAO.save(manager);
+
+
     }
 
 
 
-    public void updateManager(Manager manager, int id) {
+    public void updateManager(ManagerDTO managerDTO, LocationDTO locationDTO, int id) {
+        Location location = new Location(
+                locationDTO.getProvince(),
+                locationDTO.getCity(),
+                locationDTO.getStreet()
+        );
+        Manager manager = new Manager(
+                managerDTO.getManagerName(),
+                managerDTO.getManagerLastName(),
+                managerDTO.getManagerEmail(),
+                managerDTO.getManagerPhone(),
+                location
+        );
+
         managerDAO.update(manager, id);
     }
 
@@ -55,21 +63,32 @@ public class ManagerService {
     }
 
     public List<ManagerDTO> getAllManagers() {
+
+
         return managerDAO.findAll().stream()
                 .map(manager -> new ManagerDTO(
-                        manager.getFirstName() + " " + manager.getLastName(),
+                        manager.getFirstName(),
+                        manager.getLastName(),
                         manager.getEmail(),
                         manager.getPhoneNumber(),
-                        )
+                        new LocationDTO(
+                                manager.getLocation().getProvince(),
+                                manager.getLocation().getCity(),
+                                manager.getLocation().getStreet())))
                 .collect(Collectors.toList());
     }
 
     public ManagerDTO getManagerById(int id) {
         Manager manager = managerDAO.findById(id);
         return new ManagerDTO(
-                manager.getFirstName() + " " + manager.getLastName(),
+                manager.getFirstName(),
+                manager.getLastName(),
                 manager.getEmail(),
                 manager.getPhoneNumber(),
-                manager.getLocation().getCity());
+                new LocationDTO(
+                        manager.getLocation().getProvince(),
+                        manager.getLocation().getCity(),
+                        manager.getLocation().getStreet()));
     }
 }
+

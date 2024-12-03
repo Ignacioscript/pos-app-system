@@ -15,17 +15,24 @@ public class CustomerService {
         this.customerDAO = customerDAO;
     }
 
-    public CustomerService(){
-        this.customerDAO = new CustomerDAO();
-    }
 
-    public void saveCustomer(Customer customer){
+
+    public void createCustomer(CustomerDTO customerDTO){
+        Customer customer = new Customer(
+                customerDTO.getFirstName(),
+                customerDTO.getLastName(),
+                customerDTO.getEmail(),
+                customerDTO.getPhoneNumber());
         customerDAO.save(customer);
     }
 
-
-
-    public void updateCustomer(Customer customer, int id){
+    public void updateCustomer(CustomerDTO customerDTO, int id){
+        Customer customer = new Customer(
+                customerDTO.getFirstName(),
+                customerDTO.getLastName(),
+                customerDTO.getEmail(),
+                customerDTO.getPhoneNumber()
+        );
         customerDAO.update(customer, id);
     }
 
