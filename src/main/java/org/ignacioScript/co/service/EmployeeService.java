@@ -2,8 +2,13 @@ package org.ignacioScript.co.service;
 
 import org.ignacioScript.co.dao.EmployeeDAO;
 import org.ignacioScript.co.dto.EmployeeDTO;
+import org.ignacioScript.co.dto.JobDTO;
+import org.ignacioScript.co.dto.LocationDTO;
 import org.ignacioScript.co.model.Employee;
+import org.ignacioScript.co.model.Job;
+import org.ignacioScript.co.model.Location;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,11 +20,23 @@ public class EmployeeService {
         this.employeeDAO = employeeDAO;
     }
 
-    public EmployeeService() {
-        this.employeeDAO = new EmployeeDAO();
-    }
 
-    public void saveEmployee(Employee employee) {
+    public void saveEmployee(EmployeeDTO employeeDTO, JobDTO jobDTO, LocationDTO locationDTO) {
+        String date = employeeDTO.getHireDate();
+        LocalDate hireDate = LocalDate.parse(date);
+
+        Job job = new Job(jobDTO.getJobTitle(), jobDTO.getSalary());
+        Location location = new Location(locationDTO.getProvince(), locationDTO.getCity(), locationDTO.getStreet());
+        Employee employee = new Employee(
+                employeeDTO.getFirstName(),
+                employeeDTO.getLastName(),
+                employeeDTO.getPhoneNumber(),
+                employeeDTO.getEmail(),
+                job,
+                location,
+                hireDate
+                );
+
         employeeDAO.save(employee);
     }
 
@@ -38,9 +55,10 @@ public class EmployeeService {
                                 employee.getLastName(),
                                 employee.getEmail(),
                                 employee.getPhoneNumber(),
-                                employee.getJobTitle().getJobTitle(),
-                                employee.getLocation().getCity())
-                        ).collect(Collectors.toList());
+                                new JobDTO(employee.getJobTitle().getJobTitle(), employee.getJobTitle().getSalary()),
+                                new LocationDTO(employee.getLocation().getProvince(), employee.getLocation().getCity(), employee.getLocation().getStreet()),
+                                employee.getHireDate().toString()))
+                                .collect(Collectors.toList());
     }
 
     public EmployeeDTO findEmployeeById(int id) {
@@ -50,7 +68,8 @@ public class EmployeeService {
                 employee.getLastName(),
                 employee.getEmail(),
                 employee.getPhoneNumber(),
-                employee.getJobTitle().getJobTitle(),
-                employee.getLocation().getCity());
+                new JobDTO(employee.getJobTitle().getJobTitle(), employee.getJobTitle().getSalary()),
+                new LocationDTO(employee.getLocation().getProvince(), employee.getLocation().getCity(), employee.getLocation().getStreet()),
+                employee.getHireDate().toString());
     }
 }
