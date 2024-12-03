@@ -8,16 +8,19 @@ public class EmployeeDTO implements DataTransferObject {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String jobTitle;
-    private String location;
+    private JobDTO jobTitle;
+    private LocationDTO location;
+    private String hireDate;
 
-    public EmployeeDTO(String firstName, String lastName, String email, String phoneNumber, String jobTitle, String location) {
+
+    public EmployeeDTO(String firstName, String lastName, String email, String phoneNumber, JobDTO jobTitle, LocationDTO location, String hireDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.jobTitle = jobTitle;
         this.location = location;
+        this.hireDate = hireDate;
     }
 
     public String getFirstName() {
@@ -52,21 +55,27 @@ public class EmployeeDTO implements DataTransferObject {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getJobTitle() {
+    public JobDTO getJobTitle() {
         return jobTitle;
     }
 
-    public void setJobTitle(String jobTitle) {
+    public void setJobTitle(JobDTO jobTitle) {
         this.jobTitle = jobTitle;
     }
 
-    public String getLocation() {
+    public LocationDTO getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(LocationDTO location) {
         this.location = location;
     }
 
+    public String getHireDate() {
+        return hireDate;
+    }
 
+    public void setHireDate(String hireDate) {
+        this.hireDate = hireDate;
+    }
 }
