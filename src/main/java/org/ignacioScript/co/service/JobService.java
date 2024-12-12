@@ -15,11 +15,13 @@ public class JobService {
         this.jobDAO = jobDAO;
     }
 
-    public void saveJob(Job job) {
+    public void saveJob(JobDTO jobDTO){
+        Job job = createJobFromDTO(jobDTO);
         jobDAO.save(job);
     }
 
-    public void updateJob(Job job, int id) {
+    public void updateJob(JobDTO jobDTO, int id){
+        Job job = createJobFromDTO(jobDTO);
         jobDAO.update(job, id);
     }
 
@@ -40,6 +42,14 @@ public class JobService {
         return new JobDTO(
                 job.getJobTitle(),
                 job.getSalary());
+    }
+
+    //HELPERS
+    protected Job createJobFromDTO(JobDTO jobDTO){
+        return new Job(
+                jobDTO.getJobTitle(),
+                jobDTO.getSalary()
+        );
     }
 
 

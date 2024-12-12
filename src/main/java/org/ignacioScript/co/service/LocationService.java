@@ -15,8 +15,19 @@ public class LocationService {
         this.locationDAO = new LocationDAO();
     }
 
-    public void saveLocation(Location location){
+    public void saveLocation(LocationDTO locationDTO){
+        Location location = createLocationFromDTO(locationDTO);
         locationDAO.save(location);
+    }
+
+    public void updateLocation(LocationDTO locationDTO, int id) {
+        Location location =createLocationFromDTO(locationDTO);
+        locationDAO.update(location, id);
+
+    }
+
+    public void deleteLocation(int id){
+        locationDAO.delete(id);
     }
 
     public LocationDTO getLocationById(int id){
@@ -39,13 +50,13 @@ public class LocationService {
 
 
 
-    public void updateLocation(Location location, int id) {
-        locationDAO.update(location, id);
-
-    }
-
-    public void deleteLocation(int id){
-        locationDAO.delete(id);
+    //HELPER
+    protected Location createLocationFromDTO(LocationDTO locationDTO){
+        return new Location(
+                locationDTO.getProvince(),
+                locationDTO.getCity(),
+                locationDTO.getStreet()
+                );
     }
 
 

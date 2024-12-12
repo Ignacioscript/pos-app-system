@@ -14,35 +14,33 @@ import java.util.stream.Collectors;
 
 public class EmployeeService {
 
-    private EmployeeDAO employeeDAO;
+    private final EmployeeDAO employeeDAO;
+    private final LocationService locationService;
+    private final JobService jobService;
 
-    public EmployeeService(EmployeeDAO employeeDAO) {
+    public EmployeeService(EmployeeDAO employeeDAO, LocationService locationService, JobService jobService) {
         this.employeeDAO = employeeDAO;
+        this.locationService = locationService;
+        this.jobService = jobService;
     }
 
 
     public void saveEmployee(EmployeeDTO employeeDTO, JobDTO jobDTO, LocationDTO locationDTO) {
-        String date = employeeDTO.getHireDate();
-        LocalDate hireDate = LocalDate.parse(date);
-
-        Job job = new Job(jobDTO.getJobTitle(), jobDTO.getSalary());
-        Location location = new Location(locationDTO.getProvince(), locationDTO.getCity(), locationDTO.getStreet());
-        Employee employee = new Employee(
-                employeeDTO.getFirstName(),
-                employeeDTO.getLastName(),
-                employeeDTO.getPhoneNumber(),
-                employeeDTO.getEmail(),
-                job,
-                location,
-                hireDate
-                );
-
+        LocalDate hireDate = createLocalDate(employeeDTO.getHireDate());
+        Job job = jobService.createJobFromDTO(jobDTO);
+        Location location = locationService.createLocationFromDTO(locationDTO);
+        Employee employee = createEmployeeFromDTO(employeeDTO, job, location, hireDate);
         employeeDAO.save(employee);
     }
 
-    public void updateEmployee(Employee employee, int id) {
-        employeeDAO.update(employee, id);
-    }
+   public void updateEmployee(int id, EmployeeDTO employeeDTO, JobDTO jobDTO, LocationDTO locationDTO){
+       LocalDate hireDate = createLocalDate(employeeDTO.getHireDate());
+       Job job = jobService.createJobFromDTO(jobDTO);
+       Location location = locationService.createLocationFromDTO(locationDTO);
+       Employee employee = createEmployeeFromDTO(employeeDTO, job, location, hireDate);
+
+       employeeDAO.update(employee, id);
+   }
 
     public void deleteEmployee(int id) {
         employeeDAO.delete(id);
@@ -55,8 +53,13 @@ public class EmployeeService {
                                 employee.getLastName(),
                                 employee.getEmail(),
                                 employee.getPhoneNumber(),
-                                new JobDTO(employee.getJobTitle().getJobTitle(), employee.getJobTitle().getSalary()),
-                                new LocationDTO(employee.getLocation().getProvince(), employee.getLocation().getCity(), employee.getLocation().getStreet()),
+                                new JobDTO(
+                                        employee.getJobTitle().getJobTitle(),
+                                        employee.getJobTitle().getSalary()),
+                                new LocationDTO(
+                                        employee.getLocation().getProvince(),
+                                        employee.getLocation().getCity(),
+                                        employee.getLocation().getStreet()),
                                 employee.getHireDate().toString()))
                                 .collect(Collectors.toList());
     }
@@ -68,8 +71,33 @@ public class EmployeeService {
                 employee.getLastName(),
                 employee.getEmail(),
                 employee.getPhoneNumber(),
-                new JobDTO(employee.getJobTitle().getJobTitle(), employee.getJobTitle().getSalary()),
-                new LocationDTO(employee.getLocation().getProvince(), employee.getLocation().getCity(), employee.getLocation().getStreet()),
+                new JobDTO(
+                        employee.getJobTitle().getJobTitle(),
+                        employee.getJobTitle().getSalary()),
+                new LocationDTO(
+                        employee.getLocation().getProvince(),
+                        employee.getLocation().getCity(),
+                        employee.getLocation().getStreet()),
                 employee.getHireDate().toString());
+    }
+
+
+    //HELPERS
+
+    private Employee createEmployeeFromDTO(EmployeeDTO employeeDTO, Job job, Location location, LocalDate date){
+        return new Employee(
+                employeeDTO.getFirstName(),
+                employeeDTO.getLastName(),
+                employeeDTO.getPhoneNumber(),
+                employeeDTO.getEmail(),
+                job,
+                location,
+                date
+                );
+    }
+
+
+    private LocalDate createLocalDate(String date){
+        return  LocalDate.parse(date);
     }
 }

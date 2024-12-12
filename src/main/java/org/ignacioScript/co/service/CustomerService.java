@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class CustomerService {
 
-    private CustomerDAO customerDAO;
+    private final CustomerDAO customerDAO;
 
     public CustomerService(CustomerDAO customerDAO){
         this.customerDAO = customerDAO;
@@ -18,21 +18,12 @@ public class CustomerService {
 
 
     public void createCustomer(CustomerDTO customerDTO){
-        Customer customer = new Customer(
-                customerDTO.getFirstName(),
-                customerDTO.getLastName(),
-                customerDTO.getEmail(),
-                customerDTO.getPhoneNumber());
+        Customer customer = createCustomerFromDTO(customerDTO);
         customerDAO.save(customer);
     }
 
     public void updateCustomer(CustomerDTO customerDTO, int id){
-        Customer customer = new Customer(
-                customerDTO.getFirstName(),
-                customerDTO.getLastName(),
-                customerDTO.getEmail(),
-                customerDTO.getPhoneNumber()
-        );
+        Customer customer = createCustomerFromDTO(customerDTO);
         customerDAO.update(customer, id);
     }
 
@@ -58,6 +49,16 @@ public class CustomerService {
                 customer.getLastName(),
                 customer.getEmail(),
                 customer.getPhoneNumber());
+    }
+
+    //HELPER
+    private Customer createCustomerFromDTO(CustomerDTO customerDTO){
+        return new Customer(
+                customerDTO.getFirstName(),
+                customerDTO.getLastName(),
+                customerDTO.getEmail(),
+                customerDTO.getPhoneNumber()
+                );
     }
 
 }

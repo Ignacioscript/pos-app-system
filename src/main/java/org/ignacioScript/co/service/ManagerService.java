@@ -1,6 +1,5 @@
 package org.ignacioScript.co.service;
 
-import org.ignacioScript.co.dao.LocationDAO;
 import org.ignacioScript.co.dao.ManagerDAO;
 import org.ignacioScript.co.dto.LocationDTO;
 import org.ignacioScript.co.dto.ManagerDTO;
@@ -13,27 +12,21 @@ import java.util.stream.Collectors;
 public class ManagerService {
 
     private final ManagerDAO managerDAO;
+    private final LocationService locationService;
 
-    public ManagerService(ManagerDAO managerDAO) {
+    public ManagerService(ManagerDAO managerDAO, LocationService locationService) {
         this.managerDAO = managerDAO;
+        this.locationService = locationService;
     }
 
 
 
 
-    public void saveManagerDTO(ManagerDTO managerDTO, LocationDTO locationDTO) {
-        Location location = new Location(
-                locationDTO.getProvince(),
-                locationDTO.getCity(),
-                locationDTO.getStreet()
-        );
-        Manager manager = new Manager(
-                managerDTO.getManagerName(),
-                managerDTO.getManagerLastName(),
-                managerDTO.getManagerEmail(),
-                managerDTO.getManagerPhone(),
-                location
-        );
+    public void saveManager(ManagerDTO managerDTO, LocationDTO locationDTO) {
+
+        Location location = locationService.createLocationFromDTO(locationDTO);
+        Manager manager = createManagerFromDTO(managerDTO, location);
+
         managerDAO.save(manager);
 
 
@@ -41,20 +34,9 @@ public class ManagerService {
 
 
 
-    public void updateManager(ManagerDTO managerDTO, LocationDTO locationDTO, int id) {
-        Location location = new Location(
-                locationDTO.getProvince(),
-                locationDTO.getCity(),
-                locationDTO.getStreet()
-        );
-        Manager manager = new Manager(
-                managerDTO.getManagerName(),
-                managerDTO.getManagerLastName(),
-                managerDTO.getManagerEmail(),
-                managerDTO.getManagerPhone(),
-                location
-        );
-
+    public void updateManager(int id, ManagerDTO managerDTO, LocationDTO locationDTO) {
+        Location location = locationService.createLocationFromDTO(locationDTO);
+        Manager manager = createManagerFromDTO(managerDTO, location);
         managerDAO.update(manager, id);
     }
 
@@ -89,6 +71,19 @@ public class ManagerService {
                         manager.getLocation().getProvince(),
                         manager.getLocation().getCity(),
                         manager.getLocation().getStreet()));
+    }
+
+    //HELPER
+
+    private Manager createManagerFromDTO(ManagerDTO managerDTO, Location location){
+        return new Manager(
+                managerDTO.getManagerName(),
+                managerDTO.getManagerLastName(),
+                managerDTO.getManagerEmail(),
+                managerDTO.getManagerPhone(),
+                location
+
+        );
     }
 }
 

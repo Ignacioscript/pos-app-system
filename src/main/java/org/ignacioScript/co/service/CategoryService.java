@@ -16,19 +16,12 @@ public class CategoryService {
     }
 
     public void save(CategoryDTO categoryDTO){
-        Category category = new Category(
-                categoryDTO.getName(),
-                categoryDTO.getDescription()
-        );
-
+        Category category = createCategoryFromDTO(categoryDTO);
         categoryDAO.save(category);
     }
 
     public void update(CategoryDTO categoryDTO, int id){
-        Category category = new Category(
-                categoryDTO.getName(),
-                categoryDTO.getDescription()
-        );
+        Category category = createCategoryFromDTO(categoryDTO);
         categoryDAO.update(category, id);
     }
 
@@ -50,5 +43,15 @@ public class CategoryService {
                 category.getCategoryName(),
                 category.getDescription());
     }
+
+    //HELPER
+    protected Category createCategoryFromDTO(CategoryDTO categoryDTO){
+        return  new Category(
+                categoryDTO.getName(),
+                categoryDTO.getDescription()
+                );
+    }
+
+
 
 }
