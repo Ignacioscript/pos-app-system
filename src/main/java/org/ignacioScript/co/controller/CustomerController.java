@@ -15,23 +15,11 @@ public class CustomerController {
 
 
 
-    public void saveCustomer(String firstName, String lastName, String email, String phoneNumber){
-        CustomerDTO customerDTO = new CustomerDTO(
-                firstName,
-                lastName,
-                email,
-                phoneNumber);
-
+    public void saveCustomer(CustomerDTO customerDTO){
         customerService.createCustomer(customerDTO);
     }
 
-    public void updateCustomer(int id, String firstName, String lastName, String email, String phoneNumber){
-        CustomerDTO customerDTO = new CustomerDTO(
-                firstName,
-                lastName,
-                email,
-                phoneNumber);
-
+    public void updateCustomer(int id, CustomerDTO customerDTO){
         customerService.updateCustomer(customerDTO, id);
     }
 
